@@ -16,10 +16,12 @@ function create(req, res) {
 
     student.save()
         .then((student) => {
+                console.log("Student saved:", student);
                 res.json({message: `student saved with id ${student.id}!`});
             }
         ).catch((err) => {
-        res.send('cant post student ', err);
+        console.error("Error saving student:", err);    
+        res.status(400).json({ error: "cant post student" });
     });
 }
 
